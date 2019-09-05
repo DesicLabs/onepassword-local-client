@@ -1,18 +1,20 @@
 {
-  "name": "onepass-vault-library",
-  "version": "1.2.2",
+  "name": "onepassword-local-client",
+  "version": "1.0.0",
   "description": "Javascript library to work with onepass vaults.",
-  "main": "dist/library.js",
+  "main": "dist/onepassword.js",
+  "types": "dist/onepassword.d.ts",
   "files": [
     "dist/**/*"
   ],
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "start:dev": "webpack-dev-server"
+    "start:dev": "webpack-dev-server",
+    "start:node": "webpack && node dist/onepassword.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/allroundexperts/onepass-vault-library.git"
+    "url": "git+https://github.com/allroundexperts/onepassword-local-client.git"
   },
   "keywords": [
     "1password",
@@ -26,15 +28,22 @@
   "author": "Sibtain Ali",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/allroundexperts/onepass-vault-library/issues"
+    "url": "https://github.com/allroundexperts/onepassword-local-client/issues"
   },
-  "homepage": "https://github.com/allroundexperts/onepass-vault-library#readme",
+  "homepage": "https://github.com/allroundexperts/onepassword-local-client#readme",
   "devDependencies": {
-    "@types/node": "^11.13.4",
+    "@types/node": "^11.13.20",
+    "dts-bundle-webpack": "^1.0.2",
     "ts-loader": "^5.3.3",
     "typescript": "^3.4.3",
     "webpack": "^4.30.0",
     "webpack-cli": "^3.3.0",
-    "webpack-dev-server": "^3.3.1"
+    "webpack-dev-server": "^3.3.1",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.14.138",
+    "@types/uuid": "^3.4.5",
+    "uuid": "^3.3.3"
   }
 }
