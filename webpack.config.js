@@ -43,6 +43,7 @@ const serverConfig = {
   target: "node",
   output: { ...config.output, filename: "onepassword.js" },
   plugins: [
+    ...config.plugins,
     new webpack.ProvidePlugin({
       FormData: "form-data",
       fetch: ["node-fetch", "default"]
