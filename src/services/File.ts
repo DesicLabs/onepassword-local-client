@@ -1,9 +1,9 @@
 import { join } from "path";
-import { File as FileType, Item, Profile } from "../types";
+import { FileInterface, Item, Profile } from "../types";
 export class File {
-  private file: FileType;
+  private file: FileInterface;
   private path: string;
-  constructor(file: FileType, path: string) {
+  constructor(file: FileInterface, path: string) {
     this.file = file;
     this.path = path;
   }
