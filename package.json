@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "build": "webpack && rm -r dist/services",
+    "prepare": "webpack && rm -r dist/services",
     "start:dev": "webpack-dev-server",
     "start:node": "webpack && node dist/onepassword.js"
   },
