@@ -64,7 +64,9 @@ export type DecryptedItemDetail = {
 };
 
 export type File = {
-  readFile: (path: string) => Promise<string>;
-  writeFile: (path: string, data: string) => Promise<void>;
+  readFile: (path: string) => Promise<Buffer>;
+  writeFile: (path: string, data: Buffer) => Promise<void>;
   findFile: (path: string) => Promise<boolean>;
+  createFile: (path: string) => Promise<void>;
+  deleteFile: (path: string) => Promise<void>;
 };

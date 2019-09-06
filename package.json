@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/allroundexperts/onepassword-local-client.git"
+    "url": "git+https://github.com/DesicLabs/onepassword-local-client.git"
   },
   "keywords": [
     "1password",
@@ -28,9 +28,9 @@
   "author": "Sibtain Ali",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/allroundexperts/onepassword-local-client/issues"
+    "url": "https://github.com/DesicLabs/onepassword-local-client/issues"
   },
-  "homepage": "https://github.com/allroundexperts/onepassword-local-client#readme",
+  "homepage": "https://github.com/DesicLabs/onepassword-local-client#readme",
   "devDependencies": {
     "@types/node": "^11.13.20",
     "dts-bundle-webpack": "^1.0.2",

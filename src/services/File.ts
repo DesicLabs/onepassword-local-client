@@ -14,7 +14,9 @@ export class File {
       const exists = await this.file.findFile(path);
       if (exists) {
         const rawItem = await this.file.readFile(path);
-        return Object.values(this.formatRawData<Record<string, Item>>(rawItem));
+        return Object.values(
+          this.formatRawData<Record<string, Item>>(rawItem.toString())
+        );
       }
     });
     return (await Promise.all(items)).flat().filter(item => item);
@@ -23,7 +25,7 @@ export class File {
   public async getProfile(): Promise<Profile> {
     const filename = join(this.path, "/profile.js");
     const rawProfile = await this.file.readFile(filename);
-    return this.formatRawData<Profile>(rawProfile);
+    return this.formatRawData<Profile>(rawProfile.toString());
   }
 
   public async saveItems(items: Item[]): Promise<boolean> {
@@ -54,11 +56,11 @@ export class File {
     return filenames.map(name => join(this.path, `/band_${name}.js`));
   }
 
-  private transformStructuredItems(items: Item[]): string {
+  private transformStructuredItems(items: Item[]): Buffer {
     const object = items.reduce((acc, item) => {
       return { ...acc, [item.uuid]: item };
     }, {});
-    return `ld(${JSON.stringify(object)})`;
+    return Buffer.from(`ld(${JSON.stringify(object)})`);
   }
 
   private formatRawData<T>(data: string): T {
