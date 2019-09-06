@@ -15,7 +15,11 @@ export default class OnepasswordClient implements Client {
     this.file = new File(file, path);
   }
 
-  public async login(password: string): Promise<void> {
+  public async login(
+    password: string,
+    username?: string,
+    secret?: string
+  ): Promise<void> {
     const {
       salt: encodedSalt,
       iterations,
