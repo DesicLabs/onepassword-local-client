@@ -67,7 +67,7 @@ export type DecryptedItemDetail = {
   }>;
 };
 
-export type File = {
+export type FileInterface = {
   readFile: (path: string) => Promise<Buffer>;
   writeFile: (path: string, data: Buffer) => Promise<void>;
   findFile: (path: string) => Promise<boolean>;

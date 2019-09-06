@@ -2,7 +2,7 @@ import { find } from "lodash";
 import { Cipher } from "./services/Cipher";
 import { File } from "./services/File";
 import { prepareItem } from "./utilities";
-import { Client, Entry, Item, File as FileType } from "./types";
+import { Client, Entry, Item, FileInterface } from "./types";
 import { Categories } from "./config";
 
 export default class OnepasswordClient implements Client {
@@ -10,7 +10,7 @@ export default class OnepasswordClient implements Client {
   private file: File;
   private items: Item[];
 
-  public constructor(file: FileType, path: string) {
+  public constructor(file: FileInterface, path: string) {
     this.cipher = new Cipher();
     this.file = new File(file, path);
   }
