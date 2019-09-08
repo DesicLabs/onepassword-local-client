@@ -2,7 +2,14 @@ import { find } from "lodash";
 import { Cipher } from "./services/Cipher";
 import { File } from "./services/File";
 import { prepareItem } from "./utilities";
-import { Client, Entry, Item, FileInterface, EntryCredentials } from "./types";
+import {
+  Client,
+  Entry,
+  Item,
+  FileInterface,
+  EntryCredentials,
+  RawEntry
+} from "./types";
 import { Categories } from "./config";
 
 export default class OnepasswordClient implements Client {
@@ -68,7 +75,7 @@ export default class OnepasswordClient implements Client {
     return entryCredentials;
   }
 
-  public async addAccount(entry: Entry): Promise<void> {
+  public async addAccount(entry: RawEntry): Promise<void> {
     const { detail, overview } = prepareItem(entry);
     const itemKeys = this.cipher.generateKeyPair();
     const k = this.cipher.encryptItemKeys(itemKeys);
