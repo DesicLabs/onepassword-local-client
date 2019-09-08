@@ -1,11 +1,11 @@
 import uuidv4 from "uuid/v4";
-import { Entry, DecryptedItemDetail, DecryptedItemOverview } from "./types";
+import { DecryptedItemDetail, DecryptedItemOverview, RawEntry } from "./types";
 type PreparedItem = {
   detail: DecryptedItemDetail;
   overview: DecryptedItemOverview;
 };
 
-export const prepareItem = (entry: Entry): PreparedItem => {
+export const prepareItem = (entry: RawEntry): PreparedItem => {
   const uuid = uuidv4()
     .replace(/-/g, "")
     .toUpperCase();
