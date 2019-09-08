@@ -40,14 +40,24 @@ export class Cipher {
     this.overviewKeys = this.decryptKeys(encrypted, this.derivedKeys);
   }
 
-  public getItem(item: Item): DecryptedItemDetail & DecryptedItemOverview {
-    return { ...this.getItemOverview(item), ...this.getItemDetail(item) };
-  }
-
   public generateKeyPair(): Keyset {
     const encryptionKey = randomBytes(32);
     const macKey = randomBytes(32);
     return { encryptionKey, macKey };
+  }
+
+  public getItemOverview(item: Item): DecryptedItemOverview {
+    const overviewData = Buffer.from(item.o, "base64");
+    const overview = this.decryptOpdata(overviewData, this.overviewKeys);
+    const itemData = JSON.parse(overview.toString());
+    return itemData;
+  }
+
+  public getItemDetail(item: Item): DecryptedItemDetail {
+    const data = Buffer.from(item.d, "base64");
+    const itemKeys = this.itemKeys(item);
+    const detail = this.decryptOpdata(data, itemKeys);
+    return JSON.parse(detail.toString());
   }
 
   public encryptItemKeys(itemKeys: Keyset): string {
@@ -109,20 +119,6 @@ export class Cipher {
     return createHmac("sha256", macKey)
       .update(mergedData)
       .digest("base64");
-  }
-
-  private getItemOverview(item: Item): DecryptedItemOverview {
-    const overviewData = Buffer.from(item.o, "base64");
-    const overview = this.decryptOpdata(overviewData, this.overviewKeys);
-    const itemData = JSON.parse(overview.toString());
-    return itemData;
-  }
-
-  private getItemDetail(item: Item): DecryptedItemDetail {
-    const data = Buffer.from(item.d, "base64");
-    const itemKeys = this.itemKeys(item);
-    const detail = this.decryptOpdata(data, itemKeys);
-    return JSON.parse(detail.toString());
   }
 
   private decryptKeys(encryptedKey: Buffer, encryptionKeys: Keyset): Keyset {

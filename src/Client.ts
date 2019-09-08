@@ -2,7 +2,7 @@ import { find } from "lodash";
 import { Cipher } from "./services/Cipher";
 import { File } from "./services/File";
 import { prepareItem } from "./utilities";
-import { Client, Entry, Item, FileInterface } from "./types";
+import { Client, Entry, Item, FileInterface, EntryCredentials } from "./types";
 import { Categories } from "./config";
 
 export default class OnepasswordClient implements Client {
@@ -37,19 +37,35 @@ export default class OnepasswordClient implements Client {
     return this.items.map(
       (item): Entry => {
         const category = Categories[parseInt(item.category)];
-        const { title: name, url, fields } = this.cipher.getItem(item);
-        const username = find(fields, ["designation", "username"]);
-        const password = find(fields, ["designation", "password"]);
+        const { title: name, url } = this.cipher.getItemOverview(item);
         return {
           name,
           url,
-          username: username ? username.value : "",
-          password: password ? password.value : "",
-          otp: "",
           type: category ? category.toLowerCase() : "Unknown"
         };
       }
     );
+  }
+
+  public async getAccountCredentials(fqdn: string): Promise<EntryCredentials> {
+    this.items = await this.file.getItems();
+    let entryCredentials: EntryCredentials;
+    for (let i = 0; i < this.items.length; i++) {
+      const { url } = this.cipher.getItemOverview(this.items[i]);
+      if (url.match(new RegExp(fqdn))) {
+        const { fields } = this.cipher.getItemDetail(this.items[i]);
+        const username = find(fields, ["designation", "username"]);
+        const password = find(fields, ["designation", "password"]);
+        entryCredentials = {
+          username: username ? username.value : "",
+          password: password ? password.value : "",
+          otp: ""
+        };
+        break;
+      }
+    }
+    if (!entryCredentials) throw new Error("No account found.");
+    return entryCredentials;
   }
 
   public async addAccount(entry: Entry): Promise<void> {
