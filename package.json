@@ -1,5 +1,5 @@
 {
-  "name": "@desiclabs/nepassword-local-client",
+  "name": "@desiclabs/onepassword-local-client",
   "version": "1.0.2",
   "description": "Javascript library to work with onepass vaults.",
   "main": "dist/onepassword.js",
