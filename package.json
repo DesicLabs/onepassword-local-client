@@ -33,17 +33,16 @@
   },
   "homepage": "https://github.com/DesicLabs/onepassword-local-client#readme",
   "devDependencies": {
-    "@types/node": "^11.13.20",
+    "@types/node": "^12.7.5",
     "dts-bundle-webpack": "^1.0.2",
-    "ts-loader": "^5.3.3",
-    "typescript": "^3.5.3",
-    "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.0",
-    "webpack-dev-server": "^3.3.1",
+    "ts-loader": "^6.1.0",
+    "typescript": "^3.6.3",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.8",
+    "webpack-dev-server": "^3.8.0",
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
-    "@types/lodash": "^4.14.138",
     "@types/uuid": "^3.4.5",
     "uuid": "^3.3.3"
   }
