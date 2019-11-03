@@ -89,7 +89,14 @@
 
 ### SourceType
 
-Ƭ **SourceType**: \_"sqlite" | "opvault"
+```javascript
+enum SourceType {
+  SQLITE,
+  OPVAULT
+}
+```
+
+Default: SQLITE
 
 ---
 
