@@ -77,3 +77,14 @@ export type FileInterface = {
   createFile: (path: string) => Promise<void>;
   deleteFile: (path: string) => Promise<void>;
 };
+
+export enum SourceType {
+  SQLITE,
+  OPVAULT
+}
+
+export interface DataSource {
+  getItems: () => Promise<Item[]>;
+  getProfile: () => Promise<Profile>;
+  saveItems: (items: Item[]) => Promise<boolean>;
+}

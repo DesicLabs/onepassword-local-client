@@ -43,7 +43,11 @@
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
+    "@types/better-sqlite3": "^5.4.0",
+    "@types/lodash": "^4.14.144",
     "@types/uuid": "^3.4.5",
+    "better-sqlite3": "^5.4.3",
+    "lodash": "^4.17.15",
     "uuid": "^3.3.3"
   }
 }

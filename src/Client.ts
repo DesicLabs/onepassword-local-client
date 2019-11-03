@@ -1,6 +1,5 @@
 import { find } from "lodash";
 import { Cipher } from "./services/Cipher";
-import { File } from "./services/File";
 import { prepareItem } from "./utilities";
 import {
   Client,
@@ -8,18 +7,29 @@ import {
   Item,
   FileInterface,
   EntryCredentials,
-  RawEntry
+  DataSource,
+  RawEntry,
+  SourceType
 } from "./types";
 import { Categories } from "./config";
+import { OpVault } from "./services/datasource/Opvault";
+import { Sqlite } from "./services/datasource/Sqlite";
 
 export default class OnepasswordClient implements Client {
   private cipher: Cipher;
-  private file: File;
+  private file: DataSource;
   private items: Item[];
 
-  public constructor(file: FileInterface, path: string) {
+  public constructor(
+    file: FileInterface,
+    path: string,
+    source: SourceType = SourceType.SQLITE
+  ) {
     this.cipher = new Cipher();
-    this.file = new File(file, path);
+    this.file =
+      source === SourceType.SQLITE
+        ? new Sqlite(file, path)
+        : new OpVault(file, path);
   }
 
   public async login(

@@ -1,6 +1,6 @@
 import { join } from "path";
-import { FileInterface, Item, Profile } from "../types";
-export class File {
+import { FileInterface, Item, Profile, DataSource } from "../../types";
+export class OpVault implements DataSource {
   private file: FileInterface;
   private path: string;
   constructor(file: FileInterface, path: string) {

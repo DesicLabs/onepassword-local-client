@@ -13,7 +13,7 @@
 
 ### constructor
 
-▸ **constructor**(`fileInterface`: [FileInterface], `path`: string): _Promise‹boolean›_
+▸ **constructor**(`fileInterface`: [FileInterface], `path`: string, `type?`: [SourceType]): _Promise‹boolean›_
 
 **Parameters:**
 
@@ -21,6 +21,7 @@
 | --------------- | --------------- |
 | `fileInterface` | [FileInterface] |
 | `path`          | string          |
+| `type`          | [SourceType]    |
 
 **Returns:** _void_
 
@@ -83,6 +84,12 @@
     deleteFile: (path: string) => Promise<void>;
 }
 ```
+
+---
+
+### SourceType
+
+Ƭ **SourceType**: \_"sqlite" | "opvault"
 
 ---
 
