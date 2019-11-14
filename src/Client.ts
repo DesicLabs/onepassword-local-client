@@ -58,7 +58,8 @@ export default class OnepasswordClient implements Client {
         return {
           name,
           url,
-          type: category ? category.toLowerCase() : "Unknown"
+          type: category ? category.toLowerCase() : "Unknown",
+          username: '',
         };
       }
     );

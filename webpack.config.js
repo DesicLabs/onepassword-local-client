@@ -17,7 +17,7 @@ const config = {
   plugins: [
     new DtsBundleWebpack({
       name: "onepassword",
-      main: "dist/onepassword.d.ts",
+      main: "dist/Client.d.ts",
       removeSource: true,
       outputAsModuleFolder: true
     })
